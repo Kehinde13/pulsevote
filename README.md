@@ -114,19 +114,19 @@ This creates a predictable and scalable state architecture.
 
 ### Home Page
 
-![Homepage](./screenshots/homepage.png)
+![Homepage](./screenshots/pulsevote1.png)
 
 ### Poll Creation
 
-![Poll Creation](./screenshots/create-poll.png)
+![Poll Creation](./screenshots/pulsevote2.png)
 
 ### Voting Experience
 
-![Voting](./screenshots/vote.png)
+![Voting](./screenshots/pulsevote3.png)
 
 ### Live Results
 
-![Results](./screenshots/results.png)
+![Results](./screenshots/pulsevote4.png)
 
 ---
 
