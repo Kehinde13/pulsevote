@@ -1,107 +1,510 @@
-# 🧭 ProDev Frontend Engineering Program
+# 🗳️ PulseVote
 
-The **ProDev Frontend Engineering Program** is an intensive, hands-on learning experience focused on building scalable, high-performance, and visually engaging user interfaces. The program bridges theory and real-world development through practical projects, mentorship, and collaboration — preparing learners to become industry-ready frontend engineers.
+PulseVote is a full-stack polling platform that enables users to create polls, cast votes, and visualize results in real time.
 
----
+Built with Next.js, TypeScript, Prisma, PostgreSQL, Redux Toolkit, and Server-Sent Events (SSE), PulseVote demonstrates modern full-stack application architecture, real-time data synchronization, scalable state management, and interactive data visualization.
 
-## 📚 Program Overview
-
-Throughout the program, I explored modern frontend technologies, development workflows, and architectural principles. From foundational web development to advanced frameworks like **Next.js**, the program emphasized writing clean, efficient, and maintainable code.
-
-It also integrated agile practices, code reviews, and system design sessions — reflecting real-world software engineering culture.
+🌐 **Live Demo:** https://pulsevoteapp.vercel.app/
 
 ---
 
-## 🧠 Major Learnings
+## Overview
 
-### 🔧 Key Technologies Covered
-- **Next.js** – Server-side rendering (SSR) and static site generation (SSG) for optimized web apps.  
-- **TailwindCSS** – Utility-first CSS framework for rapid and responsive UI development.  
-- **TypeScript** – Type-safe JavaScript for better reliability and maintainability.  
-- **GraphQL** – Efficient data querying and API integration using Apollo Client.  
-- **RESTful APIs** – Designing and consuming APIs with robust data handling.  
-- **PWA (Progressive Web Apps)** – Offline-first applications with native-like experiences.  
-- **React Native** – Mobile application development with shared React logic.  
+Polling platforms are often limited to collecting responses without providing engaging, real-time feedback to participants.
 
----
+PulseVote was designed to create a seamless voting experience where users can:
 
-### 🧩 Important Frontend Concepts
-- Component-driven development and modular architecture.  
-- **State management** using React hooks and context.  
-- **Routing and dynamic pages** with Next.js.  
-- **System Design and Analysis** — understanding scalability, performance, and trade-offs.  
-- **API integration** with error handling and async data flows.  
-- Accessibility and responsive design principles.  
-- Code optimization for performance and SEO.  
+- Create custom polls instantly
+- Vote without account registration
+- See results update in real time
+- Analyze voting trends through interactive charts
+- Access polls across desktop and mobile devices
+
+The application combines modern frontend engineering with a robust backend architecture to deliver a responsive and interactive user experience.
 
 ---
 
-## ⚙️ Challenges and Solutions
+## Key Features
 
-| Challenge | Solution |
-|------------|-----------|
-| Integrating multiple APIs into a single frontend | Implemented reusable Axios hooks and modular API utilities for cleaner data fetching. |
-| Handling type errors in large TypeScript projects | Adopted strict typing, interfaces, and generic utility types for consistency. |
-| Styling complex components efficiently | Leveraged TailwindCSS and reusable component patterns to improve scalability. |
-| Managing state across nested components | Used React Context and custom hooks to simplify state sharing. |
-| Debugging build issues in Next.js | Utilized environment variables, dynamic imports, and error boundaries for stability. |
+### 📝 Poll Creation
 
----
+Users can create polls by providing:
 
-## 🌱 Best Practices and Personal Takeaways
+- Poll title
+- Optional description
+- Multiple voting options
+- Creator display name
 
-- **Write clean, modular, and reusable code** — simplicity scales better than complexity.  
-- **Plan before coding** — design systems, workflows, and UI logic upfront.  
-- **Test early and often** — catching small issues prevents bigger ones later.  
-- **Leverage documentation** — good engineers read before they reinvent.  
-- **Collaborate and communicate** — team-based learning sharpens understanding.  
-- **Performance matters** — optimize for speed, accessibility, and user experience.  
-- **Continuous learning** — frontend evolves fast; curiosity is a superpower.  
+Polls are immediately persisted to the database and become available to all users.
 
 ---
 
-## 🧩 Project Nexus: Interactive Online Polling Platform
+### 🗳️ Guest-Based Voting System
 
-### Overview
-This case study focuses on building an **interactive online polling platform** where users can vote on polls and view live results in real-time. The project emphasizes **dynamic data visualization**, **real-time updates**, and **seamless user interaction**, demonstrating practical skills in modern frontend development using **React/Next.js**.
+PulseVote removes the friction of mandatory account creation.
 
-### 🎯 Project Goals
-The primary objectives of the project are:
-- **API Integration:** Fetch and display poll questions and live results from an API.
-- **State Management:** Use Redux to manage global state efficiently.
-- **Dynamic Visualizations:** Render live poll results using charts and animations for clarity and engagement.
+Instead of traditional authentication:
 
-### 🧰 Technologies Used
-- **React / Next.js** – For component-based UI and SSR.  
-- **Redux Toolkit** – To handle global state management and real-time updates.  
-- **TypeScript** – Ensuring type safety and maintainable code.  
-- **Charting Library Chart.js** – For data visualization of poll results.  
-- **TailwindCSS** – For responsive design and flexible UI styling.  
+- A unique guest ID is generated and stored in localStorage
+- Returning visitors retain the same identity
+- Users can participate instantly
+- Vote tracking prevents duplicate voting
 
-### 🌟 Key Features
-
-#### 1. Poll Creation and Voting
-- Users can create new polls with customizable options.  
-- Users can vote on active polls and share polls via link or QR code.  
-
-#### 2. Real-Time Results Display
-- Fetches and displays live results as votes are cast.  
-- Updates charts dynamically without requiring a page refresh.  
-
-#### 3. Dynamic Visualizations
-- Interactive charts visualize votes per option.  
-- Visuals adapt responsively across mobile and desktop devices.  
-
-#### 4. Form Validation
-- Input validation ensures all poll fields are complete before submission.  
-- Provides user-friendly feedback for invalid or incomplete forms.  
+This approach provides a streamlined user experience while maintaining poll integrity.
 
 ---
 
-## 🚀 Summary
+### ⚡ Real-Time Results
 
-The **ProDev Frontend Engineering Program** was a deep dive into the mindset and craft of frontend engineering. Building **Project Nexus** allowed me to put theory into practice — blending API integration, state management, and interactive UI design into a real-world application.
+PulseVote uses **Server-Sent Events (SSE)** to deliver live vote updates.
+
+When a vote is submitted:
+
+1. Vote data is stored in PostgreSQL
+2. Vote counts are updated through Prisma
+3. The SSE service detects changes
+4. Connected clients receive update events
+5. Redux refreshes application state
+6. Charts re-render automatically
+
+Results update without requiring page refreshes.
 
 ---
 
-**_Built with curiosity, code, and a love for learning._**
+### 📊 Interactive Data Visualization
+
+Poll results are displayed through dynamic charts powered by Chart.js.
+
+Features include:
+
+- Live vote counts
+- Percentage breakdowns
+- Responsive visualizations
+- Automatic updates during active voting
+
+---
+
+### 📱 Responsive Design
+
+PulseVote is designed with a mobile-first approach and supports:
+
+- Mobile devices
+- Tablets
+- Desktop screens
+
+The interface adapts seamlessly across screen sizes.
+
+---
+
+### 🔄 Centralized State Management
+
+Redux Toolkit manages:
+
+- Poll collections
+- Poll details
+- Live voting results
+- Loading states
+- Error handling
+
+This creates a predictable and scalable state architecture.
+
+---
+
+## Screenshots
+
+### Home Page
+
+![Homepage](./screenshots/homepage.png)
+
+### Poll Creation
+
+![Poll Creation](./screenshots/create-poll.png)
+
+### Voting Experience
+
+![Voting](./screenshots/vote.png)
+
+### Live Results
+
+![Results](./screenshots/results.png)
+
+---
+
+## Technical Highlights
+
+### Real-Time Architecture with Server-Sent Events
+
+Unlike traditional polling applications that require manual refreshes, PulseVote implements a real-time update system using Server-Sent Events (SSE).
+
+#### Why SSE?
+
+For this use case, communication is primarily one-directional:
+
+```text
+Server → Client
+```
+
+SSE provides:
+
+- Lower overhead than WebSockets
+- Automatic reconnection support
+- Simpler implementation
+- Native browser support
+- Persistent server-to-client updates
+
+---
+
+### Hybrid Rendering with Next.js App Router
+
+PulseVote leverages both Server Components and Client Components.
+
+#### Server Components
+
+Used for:
+
+- Initial data fetching
+- SEO-friendly rendering
+- Database-backed content delivery
+
+Examples:
+
+```text
+app/page.tsx
+app/poll/[id]/page.tsx
+```
+
+#### Client Components
+
+Used for:
+
+- Voting interactions
+- Form submissions
+- Real-time subscriptions
+- Redux integration
+
+Examples:
+
+```text
+PollVoteClient
+PollCreateForm
+PollResultsChart
+```
+
+This architecture balances performance and interactivity.
+
+---
+
+### Database Design
+
+The application uses PostgreSQL with Prisma ORM.
+
+#### Poll
+
+```text
+Poll
+├── Options
+└── Votes
+```
+
+#### Key Design Decisions
+
+##### Vote Counter Optimization
+
+Each option stores a vote counter:
+
+```prisma
+votes Int @default(0)
+```
+
+This avoids expensive aggregate queries whenever charts are rendered.
+
+##### Vote Audit Trail
+
+Votes are stored separately from poll options.
+
+Benefits include:
+
+- Historical vote tracking
+- Analytics opportunities
+- Future reporting features
+- Better data integrity
+
+---
+
+### Guest Identity System
+
+Instead of implementing a full authentication system, PulseVote uses lightweight guest identities.
+
+```text
+guest_a1b2c3d4e5
+```
+
+Each visitor receives a unique identifier stored locally.
+
+Benefits:
+
+- Zero onboarding friction
+- Instant participation
+- Persistent user identification
+- Simpler architecture
+
+---
+
+## Architecture
+
+```text
+                 Next.js App Router
+                          │
+                          ▼
+                Server Components
+                          │
+                          ▼
+                    API Routes
+                          │
+                          ▼
+                     Prisma ORM
+                          │
+                          ▼
+                    PostgreSQL
+                          │
+                          ▼
+               Server-Sent Events
+                          │
+                          ▼
+                Redux Toolkit Store
+                          │
+                          ▼
+                     React UI
+```
+
+---
+
+## Technology Stack
+
+| Layer | Technology |
+|---------|---------|
+| Framework | Next.js 16 |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| State Management | Redux Toolkit |
+| Database | PostgreSQL |
+| ORM | Prisma |
+| API Layer | Next.js Route Handlers |
+| Real-Time Updates | Server-Sent Events (SSE) |
+| HTTP Client | Axios |
+| Charts | Chart.js |
+| Deployment | Vercel |
+
+---
+
+## Project Structure
+
+```text
+app/
+├── api/
+│   └── polls/
+│       ├── route.ts
+│       └── [id]/
+│           ├── route.ts
+│           ├── vote/
+│           ├── close/
+│           └── stream/
+│
+├── components/
+│   └── polls/
+│       ├── PollCreateForm.tsx
+│       ├── PollVoteClient.tsx
+│       ├── PollCard.tsx
+│       └── PollResultsChart.tsx
+│
+├── lib/
+│   ├── prisma.ts
+│   ├── axiosInstance.ts
+│   ├── api/
+│   └── utils/
+│       └── guest.ts
+│
+├── redux/
+│   ├── store.ts
+│   ├── slices/
+│   │   ├── pollsSlice.ts
+│   │   └── votesSlice.ts
+│   └── Providers.tsx
+│
+├── page.tsx
+├── poll/
+│   └── [id]/
+│       └── page.tsx
+└── layout.tsx
+```
+
+---
+
+## Challenges Solved
+
+### Building Real-Time Polling Without WebSockets
+
+Real-time updates were required, but implementing a full WebSocket infrastructure would add unnecessary complexity.
+
+**Solution**
+
+- Server-Sent Events (SSE)
+- Streaming responses
+- Automatic client synchronization
+- Lightweight implementation
+
+---
+
+### Managing Shared Application State
+
+Polls, votes, and live results must remain synchronized across multiple views.
+
+**Solution**
+
+- Redux Toolkit
+- Async thunks
+- Centralized state management
+- Predictable state updates
+
+---
+
+### Preventing Duplicate Voting
+
+Without user accounts, duplicate voting needed to be handled differently.
+
+**Solution**
+
+- Guest identifiers stored in localStorage
+- Vote tracking per poll
+- Client-side safeguards
+
+---
+
+### Optimizing Vote Retrieval
+
+Repeated aggregation queries can become expensive as poll participation grows.
+
+**Solution**
+
+- Dedicated vote counters
+- Optimized Prisma queries
+- Reduced database load
+
+---
+
+## AI-Assisted Development
+
+This project was developed using modern AI-assisted engineering workflows.
+
+### Tools Used
+
+- GitHub Copilot
+- Claude
+
+### How AI Was Used
+
+- Accelerating component development
+- Generating boilerplate code
+- Debugging implementation issues
+- Improving documentation
+- Exploring architectural approaches
+
+All final implementation decisions, architecture design, database modeling, and feature development were completed manually.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL
+- npm
+
+---
+
+### Installation
+
+```bash
+git clone https://github.com/Kehinde13/pulsevote.git
+
+cd pulsevote
+
+npm install
+```
+
+---
+
+### Environment Variables
+
+Create a `.env` file:
+
+```env
+DATABASE_URL=your_postgresql_connection_string
+```
+
+---
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+---
+
+### Prisma Commands
+
+Generate Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+Run Migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+Open Prisma Studio:
+
+```bash
+npx prisma studio
+```
+
+---
+
+## Future Enhancements
+
+- User authentication
+- Poll ownership dashboard
+- Anonymous vs authenticated voting
+- Poll scheduling and expiration
+- Advanced analytics
+- Poll templates
+- Team collaboration
+- Shareable insights dashboard
+- Exportable poll reports
+
+---
+
+## Why This Project Matters
+
+PulseVote demonstrates modern full-stack engineering principles through:
+
+- Next.js App Router architecture
+- Server and Client Component separation
+- Real-time application design
+- Relational database modeling
+- State management with Redux Toolkit
+- Data visualization
+- Scalable API development
+
+The project showcases the ability to design and build interactive, data-driven web applications using modern frontend and backend technologies.
